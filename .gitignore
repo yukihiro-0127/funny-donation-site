@@ -1,0 +1,30 @@
+# 環境変数ファイル
+.env
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ログファイル
+*.log
+logs/
+
+# テスト
+coverage/
+.nyc_output/
+
+# Made with Bob

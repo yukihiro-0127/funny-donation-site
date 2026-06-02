@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超絶くだらない募金サイト 💸</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎪 超絶くだらない募金サイト 🎪</h1>
+            <p class="tagline">あなたの善意を、最高にバカバカしいことに使います</p>
+        </header>
+
+        <div class="donation-reasons">
+            <div class="reason-card active" data-reason="ramen">
+                <div class="emoji">🍜</div>
+                <h2>ラーメン二郎を全店制覇したい</h2>
+                <p>人生の目標は二郎全店制覇。でも財布が空っぽ。あなたの100円が、私の胃袋を満たします。</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 23%"></div>
+                </div>
+                <p class="progress-text">23店舗 / 100店舗達成</p>
+            </div>
+
+            <div class="reason-card" data-reason="cat">
+                <div class="emoji">🐱</div>
+                <h2>猫に話しかけられたい</h2>
+                <p>毎日猫に「ニャー」と言われるだけの人生。でも猫は無視。募金で猫語翻訳機を買います。</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 67%"></div>
+                </div>
+                <p class="progress-text">¥20,100 / ¥30,000達成</p>
+            </div>
+
+            <div class="reason-card" data-reason="sleep">
+                <div class="emoji">😴</div>
+                <h2>世界一の昼寝スポットを探したい</h2>
+                <p>究極の昼寝場所を求めて世界中を旅したい。あなたの募金が、私の夢（文字通り）を叶えます。</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 5%"></div>
+                </div>
+                <p class="progress-text">¥5,000 / ¥100,000達成</p>
+            </div>
+
+            <div class="reason-card" data-reason="dance">
+                <div class="emoji">💃</div>
+                <h2>渋谷のスクランブル交差点で踊りたい</h2>
+                <p>人生一度きり。スクランブル交差点のど真ん中で全力ダンス。罰金の準備金が必要です。</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 89%"></div>
+                </div>
+                <p class="progress-text">¥89,000 / ¥100,000達成</p>
+            </div>
+
+            <div class="reason-card" data-reason="ufo">
+                <div class="emoji">🛸</div>
+                <h2>UFOを呼びたい</h2>
+                <p>宇宙人と友達になりたい。強力なレーザーポインターと宇宙食を買って、UFOを呼びます。</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 12%"></div>
+                </div>
+                <p class="progress-text">¥6,000 / ¥50,000達成</p>
+            </div>
+
+            <div class="reason-card" data-reason="potato">
+                <div class="emoji">🥔</div>
+                <h2>じゃがいもだけで1ヶ月生活したい</h2>
+                <p>じゃがいもの可能性を証明したい。フライドポテト、マッシュポテト、ポテトチップス...募金求む。</p>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 45%"></div>
+                </div>
+                <p class="progress-text">¥13,500 / ¥30,000達成</p>
+            </div>
+        </div>
+
+        <div class="donation-section">
+            <h2>🎁 募金する</h2>
+            <div class="amount-buttons">
+                <button class="amount-btn" data-amount="100">¥100</button>
+                <button class="amount-btn" data-amount="500">¥500</button>
+                <button class="amount-btn" data-amount="1000">¥1,000</button>
+                <button class="amount-btn" data-amount="5000">¥5,000</button>
+            </div>
+            <div class="custom-amount">
+                <input type="number" id="customAmount" placeholder="好きな金額を入力">
+            </div>
+            
+            <!-- 決済方法選択 -->
+            <div class="payment-methods">
+                <h3>💳 決済方法を選択</h3>
+                <div class="payment-buttons">
+                    <button class="payment-method-btn active" data-method="stripe">
+                        <span class="payment-icon">💳</span>
+                        <span>クレジットカード</span>
+                    </button>
+                    <button class="payment-method-btn" data-method="paypay">
+                        <span class="payment-icon">📱</span>
+                        <span>PayPay</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stripe カード入力フォーム -->
+            <div id="stripe-form" class="payment-form">
+                <div id="card-element"></div>
+                <div id="card-errors" role="alert"></div>
+            </div>
+
+            <!-- PayPay用の説明 -->
+            <div id="paypay-form" class="payment-form" style="display: none;">
+                <p class="paypay-note">PayPayアプリで決済ページが開きます</p>
+            </div>
+
+            <button class="donate-btn" id="donateBtn">
+                <span class="btn-text">この馬鹿げた夢を応援する 🚀</span>
+            </button>
+            <p class="disclaimer">※実際の決済が行われます。テストモードで動作しています。</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalDonors">1,234</div>
+                <div class="stat-label">バカな支援者</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalAmount">¥567,890</div>
+                <div class="stat-label">集まった無駄金</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalDreams">6</div>
+                <div class="stat-label">くだらない夢</div>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <h2>🎤 支援者の声</h2>
+            <div class="testimonial">
+                <p>"人生で一番無駄な100円だった。最高。"</p>
+                <span>- 田中太郎さん</span>
+            </div>
+            <div class="testimonial">
+                <p>"こんなバカなことに募金できて幸せです。"</p>
+                <span>- 山田花子さん</span>
+            </div>
+            <div class="testimonial">
+                <p>"UFO呼ぶやつ、本気で応援してる。"</p>
+                <span>- 佐藤次郎さん</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 超絶くだらない募金サイト | 人生は一度きり、バカなことに使おう</p>
+        </footer>
+    </div>
+
+    <!-- 募金完了モーダル -->
+    <div class="modal" id="thankYouModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🎉 ありがとうございます！ 🎉</h2>
+            <p class="modal-text">あなたの<span id="donatedAmount"></span>円が、世界一くだらない夢の実現に使われます。</p>
+            <div class="confetti">🎊🎉🎊🎉🎊</div>
+            <p class="modal-note">※これはデモサイトです。実際の決済は行われていません。</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="payment.js"></script>
+</body>
+</html>
