@@ -543,3 +543,75 @@ footer {
 }
 
 /* Made with Bob */
+
+
+/* 寄付履歴セクション */
+.donation-history {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.donation-history h2 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-item {
+    display: grid;
+    grid-template-columns: 1fr auto 2fr auto;
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 10px;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.history-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.history-donor {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.history-amount {
+    font-weight: bold;
+    color: #764ba2;
+    font-size: 1.1em;
+}
+
+.history-reason {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.history-time {
+    color: #999;
+    font-size: 0.85em;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .history-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .history-time {
+        text-align: left;
+    }
+}
